@@ -5,11 +5,11 @@
 
 ##--Input--##
 
-Expression_File <- "~/R/data/GrueberNeault_data/Gruber_Pediatric_hememalignancies/Human_Clinical_AML_BALL_HM.combined.fpkm.geneNameOnly.max.reorder.txt"
+Expression_File <- ""
 
-GeneSet_File <- "~/R/data/GrueberNeault_data/Gruber_Pediatric_hememalignancies/TRRUST_Transcription_Factors_2019.gmt"
+GeneSet_File <- ""
 
-Output_File <- "~/R/data/GrueberNeault_data/Gruber_Pediatric_hememalignancies/Gruber_Pediatric_hememalignancies_TRRUST_Transcrpt_Factors_ssGSEA.txt"
+Output_File <- ""
 
 
 
