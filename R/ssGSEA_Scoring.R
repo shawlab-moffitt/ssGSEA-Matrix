@@ -16,6 +16,7 @@ Output_File <- ""
 ####----Packages----####
 
 library(dplyr)
+library(tidyr)
 library(readr)
 library(GSVA)
 library(clusterProfiler)
@@ -74,12 +75,15 @@ if (tools::file_ext(GeneSet_File) == "RData") {
   GeneSetList <- loadRData(GeneSet_File)
 }
 
-
-
-ssgsea <- gsva(expr,GeneSetList,method = "ssgsea")   #Outputs sample names as column names
-ssgsea <- as.data.frame(t(ssgsea))                   #Transpose to make column names gs names
-ssgsea$SampleName <- rownames(ssgsea)                #Change gs names to row names
-ssgsea <- ssgsea %>%                                 #Make rownames first column to output to file
-  relocate(SampleName)
-write_delim(as.data.frame(ssgsea),Output_File, delim = '\t')
-
+if (as.numeric(tools::file_path_sans_ext(packageVersion("GSVA"))) >= 1.5) {
+  ssGSEA_param <- GSVA::ssgseaParam(expr,GeneSetList)
+  ssGSEA <- GSVA::gsva(ssGSEA_param)
+  ssGSEA <- as.data.frame(ssGSEA)
+  ssGSEA$Genesets <- rownames(ssGSEA)
+} else {
+  ssGSEA <- gsva(expr,GeneSetList,method = "ssgsea", verbose = TRUE)
+  ssGSEA <- as.data.frame(ssGSEA)
+  ssGSEA$Genesets <- rownames(ssGSEA)
+}
+ssGSEA <- ssGSEA %>% relocate(Genesets)
+write.table(as.data.frame(ssGSEA),Output_File, sep = '\t', row.names = F)
