@@ -6,8 +6,8 @@
 ## ssGSEA_Scoring.R
 This is an R script that will perform a ssGSEA calculation on a given expression matrix with a given geneset file.
 ### Requirments
-|  |  |  |  |  |
-| --- | --- | --- | --- | --- |
+|  |  |  |
+| --- | --- | --- |
 | readr_2.1.2 | dplyr_1.0.9 | tidyr_1.1.3 |
 | GSVA_1.40.1 | clusterProfiler_4.0.5 |  |
 ### Input
